@@ -1,0 +1,24 @@
+//list styles
+@mixin list () {
+  @include flex($just: center, $ali: center);
+  width: 100%;
+  height: 66px;
+  background: rgba(0, 0, 0, 0.003);
+  box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%);
+}
+
+
+// flex box
+@mixin flex(
+  $dis: flex,
+  $dir: row,
+  $wrap: nowrap,
+  $just: inherit,
+  $ali: inherit
+) {
+  display: $dis;
+  flex-direction: $dir;
+  flex-wrap: $wrap;
+  justify-content: $just;
+  align-items: $ali;
+}

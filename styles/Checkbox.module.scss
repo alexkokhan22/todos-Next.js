@@ -1,0 +1,30 @@
+@import "../styles/commonStyles/main.module";
+
+.checkboxContainer {
+  @include flex($ali: center);
+  width: max-content;
+}
+
+.checkbox {
+  width: 30px;
+  height: 30px;
+  border: 1px solid black;
+  border-radius: 50%;
+  background-color: $color-bg-todoList;
+
+  &.checked {
+    background: url("../images/check.svg") center no-repeat $color-bg-todoList;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.checkboxLabel {
+  line-height: 30px;
+  user-select: none;
+  color: black;
+  width: 100%;
+  cursor: pointer;
+}

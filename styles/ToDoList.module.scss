@@ -1,0 +1,49 @@
+@import "commonStyles/main.module";
+
+.toDoListContainer {
+  width: 550px;
+  border: 1px solid rgba(0, 0, 0, 0.003);
+  line-height: 1.4em;
+  background-color: $color-bg-todoList;
+  color: $text-color;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.15),
+          0 10px 0 -5px  $color-bg-todoList,
+          0 10px 1px -4px rgba(0, 0, 0, 0.15),
+          0 20px 0 -10px  $color-bg-todoList,
+          0 20px 1px -9px rgba(0, 0, 0, 0.15);
+
+  .formContainer {
+    @include list();
+    box-shadow: inset 0 -4px 1px rgb(0 0 0 / 3%);
+
+    button {
+      border: none;
+      background-color: rgba(0, 0, 0, 0.003);
+      width: 45px;
+      height: 66px;
+
+      &:active {
+        opacity: 0.5;
+      }
+    }
+
+    /*input {
+      width: 505px;
+      height: 66px;
+      border: none;
+      outline: none;
+      padding: 16px 16px 24px 16px;
+      font-size: 24px;
+      background: rgba(0, 0, 0, 0.003);
+      font-family: inherit;
+      font-weight: inherit;
+      line-height: 1.4em;
+      border: 0;
+      color: inherit;
+    }*/
+  }
+}
