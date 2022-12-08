@@ -1,0 +1,31 @@
+@import "../styles/commonStyles/main.module";
+
+.inputContainer {
+  position: relative;
+  box-sizing: border-box;
+  @include flex($dir: column);
+  width: 100%;
+
+  .inputLabel {
+    color: $text-color;
+    user-select: none;
+
+    &:after {
+      content: ":";
+    }
+  }
+  .input {
+    width: 505px;
+    height: 66px;
+    border: none;
+    outline: none;
+    padding: 16px 16px 24px 16px;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.003);
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: 1.4em;
+    border: 0;
+    color: inherit;
+  }
+}

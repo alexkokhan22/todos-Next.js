@@ -1,0 +1,46 @@
+@import "commonStyles/main.module";
+
+.taskContainer {
+  @include list();
+  @include flex($just: space-between, $ali: center);
+  min-height: 66px;
+  padding: 10px;
+
+  .taskTitle {
+    width: 80%;
+    @include flex($just: flex-start, $ali: center);
+    box-sizing: content-box;
+    word-break: break-all;
+    word-wrap: break-word;
+
+    .title {
+      margin-left: 23px;
+      font-size: 24px;
+      color: $text-color;
+      font-family: inherit;
+      font-weight: inherit;
+      line-height: 1.4em;
+
+      &.strikethroughTitle {
+        text-decoration: line-through;
+      }
+    }
+
+    input {
+      padding: 16px 16px 24px 10px;
+      margin-left: 23px;
+      width: 100%;
+
+      &:active, &:hover, &:focus {
+        border: 1px solid black;
+      }
+    }
+  }
+
+  button {
+    width: 30px;
+    height: 30px;
+    background-color: $color-bg-todoList;
+    border: none;
+  }
+}

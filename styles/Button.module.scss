@@ -1,0 +1,9 @@
+@import "styles/commonStyles/main.module";
+
+.primary {
+  @include flex($ali: center, $just: center);
+
+  &:active {
+    opacity: 0.5;
+  }
+}

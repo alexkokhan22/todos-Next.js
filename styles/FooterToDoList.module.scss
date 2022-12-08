@@ -1,0 +1,41 @@
+@import "commonStyles/main.module";
+
+
+.footerContainer {
+  @include list();
+  @include flex($just: center, $ali: center);
+  height: 40px;
+  padding: 16px;
+
+  .countContainer {
+    @include flex($just: flex-start, $ali: center);
+    width: 20%;
+  }
+
+  .filterButtonsContainer {
+    width: 50%;
+    margin-left: 30px;
+    @include flex($just: space-around, $ali: center);
+
+    .button {
+      border: none;
+      background-color: rgba(0, 0, 0, 0.003);
+      color: $text-color;
+
+      &.activeButton {
+        border: 1px solid $text-color;
+      }
+    }
+  }
+
+  .removeCompletedTaskButton {
+    @include flex($just: flex-end, $ali: center);
+    width: 30%;
+
+    button {
+      border: none;
+      background-color: rgba(0, 0, 0, 0.003);
+      color: $text-color;
+    }
+  }
+}
