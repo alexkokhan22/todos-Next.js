@@ -1,9 +1,10 @@
 //react
-import React, {FormEvent, useReducer, useState} from "react";
+import React, {FormEvent, useEffect, useReducer, useState} from "react";
 
 //components
 import ToDoListTask from "./ToDoListTask";
 import {Input} from "./Input";
+import FooterToDoList from "./FooterToDoList";
 
 //images
 import ArrowIcon from '../images/arrow.svg';
@@ -12,10 +13,13 @@ import ArrowIcon from '../images/arrow.svg';
 import styles from '../styles/ToDoList.module.scss'
 
 //types
-import {IAction, IToDoListState} from "../types/types";
+import {IAction, ITask, IToDoListState} from "../types/types";
 
 //helpers
-import {ADD_TASK, CHANGE_TASK, REMOVE_TASK} from "../constants/constant";
+import {ADD_TASK, CHANGE_TASK, REMOVE_TASK, SELECT_ALL_TASKS} from "../constants/constant";
+import {classes} from "../utils/classes/classes";
+import {v1} from "uuid";
+import HeaderToDoList from "./HeaderToDoList";
 
 export default function ToDoList() {
     const initialState: IToDoListState = {tasks: []};
@@ -26,7 +30,7 @@ export default function ToDoList() {
             case ADD_TASK:
                 return {...state, tasks: [...state.tasks, payload]};
             case REMOVE_TASK:
-                return {...state, tasks: state.tasks.filter(t => t.id !== payload)};
+                return {...state, tasks: state.tasks.filter(t => !payload.includes(t.id))};
             case CHANGE_TASK:
                 return {
                     ...state,
@@ -34,6 +38,11 @@ export default function ToDoList() {
                         el.id === payload.id ? {...payload} : el
                     )
                 };
+            case SELECT_ALL_TASKS:
+                return {
+                    ...state,
+                    tasks: state.tasks.map(el => ({...el, isCompleted: payload}))
+                }
             default:
                 throw new Error();
         }
@@ -41,25 +50,26 @@ export default function ToDoList() {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const [inputValue, setInputValue] = useState<string>('');
+    const [taskForToDoList, setTaskForTodolist] = useState<Array<ITask>>(state.tasks)
 
-    const onChangeInputValue = (e: FormEvent<HTMLInputElement>) => {
-        setInputValue(e.currentTarget.value)
-    };
 
-    const addNewTask = () => {
+    useEffect(() => {
+        setTaskForTodolist(state.tasks);
+    }, [state.tasks]);
+
+
+    const addNewTask = (value: string) => {
         dispatch({
             type: ADD_TASK,
             payload: {
-                id: state.tasks.length + 1,
-                title: inputValue,
-                isCompleted: true,
+                id: v1(),
+                title: value,
+                isCompleted: false,
             }
         })
-        setInputValue('');
     };
 
-    const changeTask = (id: number, title: string, isCompleted: boolean) => {
+    const changeTask = (id: string, title: string, isCompleted: boolean) => {
         dispatch({
             type: CHANGE_TASK,
             payload: {
@@ -70,31 +80,49 @@ export default function ToDoList() {
         })
     };
 
-    const removeTask = (id: number) => () => {
+    const removeTask = (id: Array<string>) => () => {
         dispatch({
             type: REMOVE_TASK,
             payload: id,
         });
     };
 
+    const selectAllTasks = (selectAll: boolean) => {
+        dispatch({
+            type: SELECT_ALL_TASKS,
+            payload: selectAll,
+        });
+    };
+
+    const filteredTask = (filter: string) => {
+        switch (filter) {
+            case 'Active':
+                const activeTask = state.tasks.filter(t => !t.isCompleted);
+                return setTaskForTodolist(activeTask);
+            case 'Completed':
+                const completedTask = state.tasks.filter(t => t.isCompleted)
+                return setTaskForTodolist(completedTask);
+            case 'All':
+                return setTaskForTodolist(state.tasks);
+            default:
+                return taskForToDoList;
+        }
+    }
+
 
     return (
-        <div className={styles.toDoListContainer}>
-            <div className={styles.formContainer}>
-                <button>
-                    <ArrowIcon/>
-                </button>
-                <Input
-                    type={'text'}
-                    value={inputValue}
-                    onChange={onChangeInputValue}
-                    placeholder={'What needs to be done?'}
-                    onEnterPress={addNewTask}
-                />
-            </div>
-            {state.tasks.map(t => {
+        <div className={classes(styles.toDoListContainer, !!state.tasks.length && styles.paperLists)}>
+            <HeaderToDoList selectAllTasks={selectAllTasks} addNewTask={addNewTask}/>
+            {taskForToDoList.map(t => {
                 return <ToDoListTask key={t.id} task={t} removeTask={removeTask} changeTask={changeTask}/>
             })}
+            {!!state.tasks.length &&
+                <FooterToDoList
+                    tasks={state.tasks}
+                    filteredTask={filteredTask}
+                    removeTask={removeTask}
+                />
+            }
         </div>
     )
 }

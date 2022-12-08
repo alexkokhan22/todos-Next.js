@@ -13,6 +13,7 @@ import styles from "../styles/ToDoListTask.module.scss"
 //tools
 import Checkbox from "./Checkbox";
 import {Input} from "./Input";
+import {classes} from "../utils/classes/classes";
 
 
 export default function ToDoListTask(props: IToDoListTaskProps) {
@@ -53,7 +54,11 @@ export default function ToDoListTask(props: IToDoListTaskProps) {
                 />
                 {!changeTaskTitle
                     ?
-                    <span onDoubleClick={isChangeTaskTitle(true)} onKeyDown={editTask}>{task.title}</span>
+                    <span
+                        className={classes(styles.title, task.isCompleted && styles.strikethroughTitle)}
+                        onDoubleClick={isChangeTaskTitle(true)}
+                        onKeyDown={editTask}>{task.title}
+                    </span>
                     :
                     <Input
                         type={'text'}
@@ -65,7 +70,7 @@ export default function ToDoListTask(props: IToDoListTaskProps) {
                     />
                 }
             </div>
-            {showIcon && !changeTaskTitle && <button onClick={removeTask(task.id)}><CloseIcon/></button>}
+            {showIcon && !changeTaskTitle && <button onClick={removeTask([task.id])}><CloseIcon/></button>}
         </div>
     )
 }

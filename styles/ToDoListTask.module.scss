@@ -13,13 +13,17 @@
     word-break: break-all;
     word-wrap: break-word;
 
-    span {
+    .title {
       margin-left: 23px;
       font-size: 24px;
       color: $text-color;
       font-family: inherit;
       font-weight: inherit;
       line-height: 1.4em;
+
+      &.strikethroughTitle {
+        text-decoration: line-through;
+      }
     }
 
     input {
