@@ -1,14 +1,14 @@
 // React
-import React from 'react';
+import React from "react";
 
 // styles
-import styles from '../styles/Button.module.scss';
+import styles from "../styles/Button.module.scss";
 
 // types
 import {IButtonProps} from "../types/types";
 
 // utils
-import {classes} from '../utils/classes/classes';
+import {classes} from "../utils/classes/classes";
 import {handleEnterDown} from "../utils/keyDownHandler/keyDownHandler";
 
 export default function Button(props: IButtonProps) {

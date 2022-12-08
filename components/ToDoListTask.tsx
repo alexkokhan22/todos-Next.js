@@ -1,8 +1,10 @@
 //react
 import React, {FormEvent, useState} from "react";
 
-//images
-import CloseIcon from '../images/close.svg'
+//components
+import CloseIcon from "../images/close.svg";
+import Checkbox from "./Checkbox";
+import {Input} from "./Input";
 
 //types
 import {IToDoListTaskProps} from "../types/types";
@@ -10,9 +12,7 @@ import {IToDoListTaskProps} from "../types/types";
 //styles
 import styles from "../styles/ToDoListTask.module.scss"
 
-//tools
-import Checkbox from "./Checkbox";
-import {Input} from "./Input";
+//helpers
 import {classes} from "../utils/classes/classes";
 
 
@@ -21,7 +21,7 @@ export default function ToDoListTask(props: IToDoListTaskProps) {
 
     const [showIcon, setShowIcon] = useState<boolean>(false);
     const [changeTaskTitle, setChangeTaskTitle] = useState<boolean>(false);
-    const [inputValue, setInputValue] = useState<string>(task.title)
+    const [inputValue, setInputValue] = useState<string>(task.title);
 
     const isShowIcon = (show: boolean) => () => setShowIcon(show);
 
@@ -61,7 +61,7 @@ export default function ToDoListTask(props: IToDoListTaskProps) {
                     </span>
                     :
                     <Input
-                        type={'text'}
+                        type={"text"}
                         value={inputValue}
                         onChange={onChangeInputValue}
                         onEnterPress={editTask}

@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 export const handleEnterDown = (
     e: React.KeyboardEvent | KeyboardEvent,
     handleCallback: (() => void) | (() => void)[]
 ) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
         e.preventDefault();
         e.stopPropagation();
         Array.isArray(handleCallback)
@@ -17,7 +17,7 @@ export const handleEscapeDown = (
     e: React.KeyboardEvent | KeyboardEvent,
     handleCallback: (() => void) | (() => void)[]
 ) => {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
         e.preventDefault();
         e.stopPropagation();
         Array.isArray(handleCallback)

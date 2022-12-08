@@ -1,10 +1,10 @@
 //utils
-import {classes} from '../utils/classes/classes';
+import {classes} from "../utils/classes/classes";
 
 // styles
-import styles from '../styles/Checkbox.module.scss';
+import styles from "../styles/Checkbox.module.scss";
 
-// models
+// types
 import {ICheckbox} from "../types/types";
 
 export default function Checkbox(props: ICheckbox) {

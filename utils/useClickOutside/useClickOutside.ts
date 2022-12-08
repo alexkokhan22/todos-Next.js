@@ -1,4 +1,4 @@
-import { RefObject, useEffect } from 'react';
+import { RefObject, useEffect } from "react";
 
 export const useClickOutside = (ref: RefObject<any>, callback: () => void) => {
   const handleClick = (e: MouseEvent) => {
@@ -7,9 +7,9 @@ export const useClickOutside = (ref: RefObject<any>, callback: () => void) => {
     }
   };
   useEffect(() => {
-    document.addEventListener('mousedown', handleClick);
+    document.addEventListener("mousedown", handleClick);
     return () => {
-      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener("mousedown", handleClick);
     };
   });
 };

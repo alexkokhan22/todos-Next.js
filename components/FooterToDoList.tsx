@@ -1,3 +1,6 @@
+//react
+import {useState} from "react";
+
 //components
 import Button from "./Button";
 
@@ -6,14 +9,15 @@ import styles from "../styles/FooterToDoList.module.scss"
 
 //types
 import {IFooterToDoListProps} from "../types/types";
-import {useState} from "react";
+
+//helpers
 import {Active, All, Completed} from "../constants/constant";
 import {classes} from "../utils/classes/classes";
 import {v1} from "uuid";
 
 export default function FooterToDoList(props: IFooterToDoListProps) {
     const {tasks, filteredTask, removeTask} = props;
-    const [activeClass, setActiveClass] = useState<string>(All)
+    const [activeClass, setActiveClass] = useState<string>(All);
 
     const completedTasks = tasks.filter(t => t.isCompleted).map(t => t.id);
     const tasksNotCompleted = tasks.filter(t => !t.isCompleted);
@@ -44,7 +48,7 @@ export default function FooterToDoList(props: IFooterToDoListProps) {
         <div className={styles.footerContainer}>
             <div className={styles.countContainer}>
                 <span>
-                {tasksNotCompleted.length} {tasksNotCompleted.length > 1 ? 'items' : 'item'} left
+                {tasksNotCompleted.length} {tasksNotCompleted.length > 1 ? "items" : "item"} left
             </span>
             </div>
             <div className={styles.filterButtonsContainer}>
@@ -60,7 +64,7 @@ export default function FooterToDoList(props: IFooterToDoListProps) {
                 })}
             </div>
             <div className={styles.removeCompletedTaskButton}>
-                {!!completedTasks.length && <Button title={'Clear completed'} onClick={removeTask(completedTasks)}/>}
+                {!!completedTasks.length && <Button title={"Clear completed"} onClick={removeTask(completedTasks)}/>}
             </div>
         </div>
     )

@@ -1,14 +1,21 @@
+//react
+import React, {FormEvent, useState} from "react";
+
+//components
 import ArrowIcon from "../images/arrow.svg";
 import {Input} from "./Input";
-import React, {FormEvent, useState} from "react";
-import {IHeaderToDoListProps} from "../types/types";
-import styles from '../styles/HeaderToDoList.module.scss'
 import Button from "./Button";
+
+//types
+import {IHeaderToDoListProps} from "../types/types";
+
+//styles
+import styles from '../styles/HeaderToDoList.module.scss'
 
 export default function HeaderToDoList(props: IHeaderToDoListProps) {
     const {selectAllTasks, addNewTask} = props;
 
-    const [inputValue, setInputValue] = useState<string>('');
+    const [inputValue, setInputValue] = useState<string>("");
 
     const [selectedAllTasks, setSelectedAllTask] = useState<boolean>(false);
 
@@ -18,8 +25,8 @@ export default function HeaderToDoList(props: IHeaderToDoListProps) {
 
     const addTask = () => {
         addNewTask(inputValue);
-        setInputValue('');
-    }
+        setInputValue("");
+    };
 
     const selectTasks = () => {
         if (!selectedAllTasks) {
@@ -29,16 +36,16 @@ export default function HeaderToDoList(props: IHeaderToDoListProps) {
             selectAllTasks(false);
             setSelectedAllTask(false);
         }
-    }
+    };
 
     return (
         <div className={styles.formContainer}>
             <Button className={styles.button} icon={<ArrowIcon/>} onClick={selectTasks}/>
             <Input
-                type={'text'}
+                type={"text"}
                 value={inputValue}
                 onChange={onChangeInputValue}
-                placeholder={'What needs to be done?'}
+                placeholder={"What needs to be done?"}
                 onEnterPress={addTask}
             />
         </div>

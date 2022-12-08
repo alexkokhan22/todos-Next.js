@@ -2,17 +2,17 @@
 import React, {useRef} from "react";
 
 // utils
-import {classes} from '../utils/classes/classes';
+import {classes} from "../utils/classes/classes";
 import {handleEnterDown, handleEscapeDown} from "../utils/keyDownHandler/keyDownHandler";
 
 // styles
-import styles from '../styles/Input.module.scss';
+import styles from "../styles/Input.module.scss";
 
 // types
 import {IInputProps} from "../types/types";
 import {useClickOutside} from "../utils/useClickOutside/useClickOutside";
 
-export const Input = (props: IInputProps) => {
+export function Input(props: IInputProps) {
     const {
         label,
         className,
@@ -31,7 +31,7 @@ export const Input = (props: IInputProps) => {
 
     const onKeyDownHandler = (e: React.KeyboardEvent<HTMLElement>) => {
         onEnterPress && handleEnterDown(e, onEnterPress);
-        onEscPress && handleEscapeDown(e, onEscPress)
+        onEscPress && handleEscapeDown(e, onEscPress);
     };
 
     return (
@@ -56,4 +56,4 @@ export const Input = (props: IInputProps) => {
             />
         </div>
     );
-};
+}

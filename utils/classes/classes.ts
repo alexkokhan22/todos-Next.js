@@ -5,12 +5,12 @@ export const classes = (...args: any[]) => {
     if (!arg) {
       return;
     }
-    if (typeof arg === 'object') {
+    if (typeof arg === "object") {
       Object.entries(arg || {}).forEach(
         ([key, value]) => !!value && nextClasses.push(key)
       );
     }
-    if (typeof arg === 'string') {
+    if (typeof arg === "string") {
       nextClasses.push(arg);
     }
   });

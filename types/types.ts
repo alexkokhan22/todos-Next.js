@@ -1,4 +1,4 @@
-import React, {FormEvent, ReactElement, ReactNode} from 'react';
+import React, {FormEvent, ReactElement, ReactNode} from "react";
 
 // reducer interfaces
 export interface ITask {
@@ -47,7 +47,7 @@ export interface ICheckbox {
 
 //input props
 export type IInputProps = {
-    type: 'text' | 'password' | 'reset' | 'submit' | 'email',
+    type: "text" | "password" | "reset" | "submit" | "email",
     value: string | number,
     placeholder?: string,
     label?: string | ReactNode,

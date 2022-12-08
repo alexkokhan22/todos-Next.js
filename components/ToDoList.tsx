@@ -1,25 +1,21 @@
 //react
-import React, {FormEvent, useEffect, useReducer, useState} from "react";
+import React, {useEffect, useReducer, useState} from "react";
 
 //components
 import ToDoListTask from "./ToDoListTask";
-import {Input} from "./Input";
 import FooterToDoList from "./FooterToDoList";
-
-//images
-import ArrowIcon from '../images/arrow.svg';
+import HeaderToDoList from "./HeaderToDoList";
 
 //styles
-import styles from '../styles/ToDoList.module.scss'
+import styles from "../styles/ToDoList.module.scss";
 
 //types
 import {IAction, ITask, IToDoListState} from "../types/types";
 
 //helpers
-import {ADD_TASK, CHANGE_TASK, REMOVE_TASK, SELECT_ALL_TASKS} from "../constants/constant";
+import {Active, ADD_TASK, All, CHANGE_TASK, Completed, REMOVE_TASK, SELECT_ALL_TASKS} from "../constants/constant";
 import {classes} from "../utils/classes/classes";
 import {v1} from "uuid";
-import HeaderToDoList from "./HeaderToDoList";
 
 export default function ToDoList() {
     const initialState: IToDoListState = {tasks: []};
@@ -42,7 +38,7 @@ export default function ToDoList() {
                 return {
                     ...state,
                     tasks: state.tasks.map(el => ({...el, isCompleted: payload}))
-                }
+                };
             default:
                 throw new Error();
         }
@@ -50,7 +46,7 @@ export default function ToDoList() {
 
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    const [taskForToDoList, setTaskForTodolist] = useState<Array<ITask>>(state.tasks)
+    const [taskForToDoList, setTaskForTodolist] = useState<Array<ITask>>(state.tasks);
 
 
     useEffect(() => {
@@ -96,18 +92,18 @@ export default function ToDoList() {
 
     const filteredTask = (filter: string) => {
         switch (filter) {
-            case 'Active':
+            case Active:
                 const activeTask = state.tasks.filter(t => !t.isCompleted);
                 return setTaskForTodolist(activeTask);
-            case 'Completed':
+            case Completed:
                 const completedTask = state.tasks.filter(t => t.isCompleted)
                 return setTaskForTodolist(completedTask);
-            case 'All':
+            case All:
                 return setTaskForTodolist(state.tasks);
             default:
                 return taskForToDoList;
         }
-    }
+    };
 
 
     return (
