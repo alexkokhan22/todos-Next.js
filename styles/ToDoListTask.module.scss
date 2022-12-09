@@ -4,6 +4,7 @@
   @include list();
   @include flex($just: space-between, $ali: center);
   min-height: 66px;
+  height: auto;
   padding: 10px;
 
   .taskTitle {

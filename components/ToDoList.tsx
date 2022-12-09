@@ -55,14 +55,16 @@ export default function ToDoList() {
 
 
     const addNewTask = (value: string) => {
-        dispatch({
-            type: ADD_TASK,
-            payload: {
-                id: v1(),
-                title: value,
-                isCompleted: false,
-            }
-        })
+        if(value.trimStart().length) {
+            dispatch({
+                type: ADD_TASK,
+                payload: {
+                    id: v1(),
+                    title: value.trimStart(),
+                    isCompleted: false,
+                }
+            })
+        }
     };
 
     const changeTask = (id: string, title: string, isCompleted: boolean) => {
